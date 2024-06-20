@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="Proyecto_Sistema_de_horarios_U4_S4.Views.AgregarActividadView"
+             Title="AgregarActividadView" Shell.NavBarIsVisible="False" BackgroundColor="Orange" 
+            >
+    <ScrollView>
+    <VerticalStackLayout>
+            <Grid ColumnDefinitions="auto,auto"  Grid.RowSpan="0" Margin="10" HorizontalOptions="EndAndExpand" >
+
+                <ImageButton Grid.Column="0" Command="{Binding AgregarActividadCommand}" CommandParameter="AgregarActividad"    
+            MaximumHeightRequest="70" MaximumWidthRequest="70"  HorizontalOptions="End"  Background="Transparent" Margin="0,0,5,0"
+           Source="mas.png"></ImageButton>
+                <ImageButton Grid.Column="1" Command="{Binding NavegateCommand}" CommandParameter="Inicio" 
+            MaximumHeightRequest="60" MaximumWidthRequest="60"   HorizontalOptions="End" Background="Transparent" Margin="5,0,5,0"
+                 Source="tacha.png"></ImageButton>
+            </Grid>
+
+            <Label Margin="0,5,0,0" FontSize="Subtitle">Nombre de la actividad:</Label>
+        <Entry Margin="0,5,5,5" Background="White" Text="{Binding Horario.NombreAC}" ></Entry>
+
+
+        <Label Margin="0,5,0,0" FontSize="Subtitle">Descripcion de la actividad:</Label>
+        <Editor Margin="0,5,5,5" Background="White" Text="{Binding Horario.AulaDescripcion}" ></Editor>
+
+        <Label Margin="0,5,0,0" FontSize="Subtitle">Dia:</Label>
+        <Picker Margin="0,5,5,5" ItemsSource="{Binding ListaDias}" SelectedItem="{Binding Horario.Dia}" Background="White" ></Picker>
+
+        <Label Margin="0,5,0,0" FontSize="Subtitle">Hora de inicio:</Label>
+        <Entry Margin="0,5,5,5" Background="White" Keyboard="Numeric" Text="{Binding Horario.HoraInicio}" ></Entry>
+
+
+        <Label Margin="0,5,0,0" FontSize="Subtitle">Hora Final:</Label>
+            <Editor Margin="0,5,5,5" Background="White" Keyboard="Numeric" Text="{Binding Horario.HoraFin}" ></Editor>
+
+        <Label Margin="0,5,0,0" HorizontalOptions="Center" FontSize="Subtitle" Text="{Binding MensajeError}" TextColor="Red"></Label>
+       
+    </VerticalStackLayout>
+    </ScrollView>
+</ContentPage>

@@ -1,0 +1,55 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="Proyecto_Sistema_de_horarios_U4_S4.Views.EliminarClase"
+             Title="EliminarClase" Background="DeepSkyBlue" Shell.NavBarIsVisible="False">
+    <ScrollView>
+        <VerticalStackLayout>
+            <Grid ColumnDefinitions="auto,auto"  Grid.RowSpan="0" Margin="10" HorizontalOptions="EndAndExpand" >
+
+                <ImageButton Grid.Column="0" Command="{Binding EliminarCommand}"   
+            MaximumHeightRequest="70" MaximumWidthRequest="70"  HorizontalOptions="End"  Background="Transparent" Margin="0,0,5,0"
+           Source="confirmar.png"></ImageButton>
+                <ImageButton Grid.Column="1" Command="{Binding NavegateCommand}" CommandParameter="Inicio" 
+            MaximumHeightRequest="60" MaximumWidthRequest="60"   HorizontalOptions="End" Background="Transparent" Margin="5,0,5,0"
+                 Source="tacha.png"></ImageButton>
+            </Grid>
+
+            <Label HorizontalOptions="Center" Margin="20,20,0,10">
+                <Label.FormattedText>
+                    <FormattedString>
+                        <FormattedString.Spans>
+                            <Span Text="¿Estas seguo de eliminar la clase de: " FontFamily="TimesNewRoman" FontSize="Title"></Span>
+                            <Span TextColor="Red" Text="{Binding Horario.NombreAC}" FontFamily="TimesNewRoman" FontSize="Title"></Span>
+                            <Span FontFamily="TimesNewRoman" FontSize="Title">?</Span>
+                        </FormattedString.Spans>
+                    </FormattedString>
+                </Label.FormattedText>
+            </Label>
+
+            <Label HorizontalOptions="Center" Margin="20,20,0,10">
+                <Label.FormattedText>
+                    <FormattedString>
+                        <FormattedString.Spans>
+                            <Span Text="Dada por: " FontFamily="TimesNewRoman" FontSize="Title"></Span>
+                            <Span TextColor="Red" Text="{Binding Horario.NombreMaestro}" FontFamily="TimesNewRoman" FontSize="Title"></Span>
+                        </FormattedString.Spans>
+                    </FormattedString>
+                </Label.FormattedText>
+            </Label>
+            <Label HorizontalOptions="Center" FontSize="Title" Margin="0,20,0,10">
+                <Label.FormattedText>
+                    <FormattedString>
+                        <FormattedString.Spans>
+                            <Span Text="Con las horas de:  " FontFamily="TimesNewRoman" FontSize="Title"></Span>
+                            <Span TextColor="Red" Text="{Binding Horario.HoraInicio}" FontFamily="consolas" FontSize="Title"></Span>
+                            <Span  TextColor="Red" FontSize="Title" Text=":00 - "  FontFamily="consolas"></Span>
+                            <Span TextColor="Red" Text="{Binding Horario.HoraFin}" FontFamily="consolas" FontSize="Title"></Span>
+                            <Span TextColor="Red" FontSize="Title" Text=":00"  FontFamily="consolas"></Span>
+                        </FormattedString.Spans>
+                    </FormattedString>
+                </Label.FormattedText>
+            </Label>
+        </VerticalStackLayout>
+    </ScrollView>
+</ContentPage>

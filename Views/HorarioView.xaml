@@ -1,0 +1,109 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage
+    xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="Proyecto_Sistema_de_horarios_U4_S4.Views.HorarioView"
+             Title="akdsaas" Shell.NavBarIsVisible="False" BackgroundColor="#fdfd96" 
+    x:Name="Pantalla" >
+
+    <Grid RowDefinitions="auto,9*">
+        <Grid ColumnDefinitions="7*,auto,auto"  Grid.RowSpan="0" Margin="10" >
+            <Picker Grid.ColumnSpan="0" ItemsSource="{Binding ListaDias}" SelectedItem="{Binding diaSeleccionado}" Background="White" MaximumHeightRequest="55" ></Picker>
+            <Border Grid.Column="1" StrokeThickness="1" Stroke="Black" StrokeShape="RoundRectangle 15" Margin="3" Background="Orange">
+                <ImageButton  Command="{Binding NavegateCommand}" CommandParameter="AgregarActividad"    
+                    MaximumHeightRequest="70" MaximumWidthRequest="60"  HorizontalOptions="End" 
+                   Source="Actividades.png"></ImageButton>
+            </Border>
+            <Border Grid.Column="2" StrokeThickness="1" Stroke="Black" StrokeShape="RoundRectangle 15"  Margin="3" Background="DeepSkyBlue" >
+                <ImageButton Command="{Binding NavegateCommand}" CommandParameter="AgregarClase" 
+                    MaximumHeightRequest="70" MaximumWidthRequest="60"   HorizontalOptions="End" 
+                         Source="conferencia.png"></ImageButton>
+            </Border>
+        </Grid>
+
+         
+        <VerticalStackLayout Grid.Row="2">
+            <CollectionView ItemsSource="{Binding ListaObservable}" Margin="3">
+                <CollectionView.ItemTemplate >
+                    <DataTemplate>
+                        <SwipeView>
+                            <SwipeView.RightItems>
+                                
+                                <SwipeItem IconImageSource="editar.png" Text="Editar" BackgroundColor="Yellow" Command="{Binding Source={x:Reference Pantalla}, Path=BindingContext.VerEditarCommand}" CommandParameter="{Binding .}"></SwipeItem>
+                                <SwipeItem IconImageSource="eliminar.png" Text="Eliminar" BackgroundColor="Yellow"  Command="{Binding Source={x:Reference Pantalla}, Path=BindingContext.VerEliminarCommand}" CommandParameter="{Binding .}"></SwipeItem>
+                            </SwipeView.RightItems>
+                            <Border StrokeThickness="1" StrokeShape="RoundRectangle 15" Stroke="Black" >
+                                
+                                <Grid  RowDefinitions="auto,auto,auto" BackgroundColor="DeepSkyBlue">
+                                    <Grid.Style>
+                                        <Style TargetType="Grid" >
+                                            <Style.Triggers>
+                                                <DataTrigger TargetType="Grid" Binding="{Binding AC}" Value="Descripcion">
+                                                    <Setter Property="Background" Value="Orange"></Setter>
+                                                </DataTrigger>
+                                            </Style.Triggers>
+                                        </Style>
+                                    </Grid.Style>
+                                    <Border Grid.ColumnSpan="0"  Stroke="Black" StrokeThickness=".5">
+                                        <Grid RowDefinitions="auto,auto">
+                                            <Label HorizontalOptions="Center" Grid.Row="0" Text="{Binding NombreAC}" FontFamily="TimesNewRoman" FontSize="Title" ></Label>
+                                            <Label HorizontalOptions="Center"  Grid.Row="2" Text="{Binding NombreMaestro, StringFormat='Docente: {0}'}">
+                                                <Label.Style>
+                                                    <Style TargetType="Label">
+                                                        <Style.Triggers>
+                                                            <DataTrigger TargetType="Label" Binding="{Binding NombreMaestro}" Value="">
+                                                                <Setter Property="IsVisible" Value="Collapse"></Setter>
+                                                            </DataTrigger>
+
+                                                        </Style.Triggers>
+
+                                                    </Style>
+                                                </Label.Style>
+                                            </Label>
+                                        </Grid>
+                                    </Border>
+                                    <Polyline Grid.Row="1" Stroke="Red" Points="0,0" StrokeThickness="3"></Polyline>
+                                    <Border  Grid.Row="1" Stroke="Black" StrokeThickness=".5">
+                                        <Grid Margin="0,5,0,5" ColumnDefinitions="2*,2*,2*">
+
+                                            <Label Grid.Column="0"  HorizontalOptions="Center" FontFamily="Calisto MT">Hora</Label>
+
+
+                                            <Label Grid.Column="1" HorizontalOptions="Center" FontFamily="Calisto MT">Dia</Label>
+
+
+                                            <Label Grid.Column="2" HorizontalOptions="Center" FontFamily="Calisto MT" Text="{Binding AC}"></Label>
+
+                                    
+                                </Grid>
+                                    </Border>
+                                    <Grid Margin="0,5,0,5" Grid.Row="2" ColumnDefinitions="2*,2*,2*" >
+
+                                        <Label Grid.Row="0" HorizontalOptions="Center" >
+                                            <Label.FormattedText>
+                                                <FormattedString>
+                                                    <FormattedString.Spans>
+                                                        <Span Text="{Binding HoraInicio}" FontFamily="Consolas" ></Span>
+                                                        <Span Text=":00 - " FontFamily="Consolas"></Span>
+                                                        <Span Text="{Binding HoraFin}" FontFamily="Consolas"></Span>
+                                                        <Span Text=":00" FontFamily="Consolas"></Span>
+                                                    </FormattedString.Spans>
+                                                </FormattedString>
+                                            </Label.FormattedText>
+                                        </Label>
+                                        <Label Grid.Column="1" HorizontalOptions="Center" FontFamily="Arial" Text="{Binding Dia}"></Label>
+                                        <Label Grid.Column="2"  HorizontalOptions="Center" FontFamily="Arial" Text="{Binding AulaDescripcion}"></Label>
+
+                                    </Grid>
+
+                                </Grid>
+                            </Border>
+                        </SwipeView>
+                    </DataTemplate>
+                </CollectionView.ItemTemplate>
+            </CollectionView>
+        </VerticalStackLayout>
+
+
+    </Grid>
+</ContentPage>
